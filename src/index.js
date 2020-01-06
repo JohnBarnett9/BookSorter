@@ -30,13 +30,16 @@ const RouterExample = () => {
 					<li>
 						<Link to="/John/React/Books/BookAuthor">BookAuthor</Link>
 					</li>
+					<li>
+						<Link to="/John/React/Books/BookGenre">Book Genre</Link>
+					</li>
 				</ul>
 				<Switch>
-					<Route
-					exact path="/John/React/Books"
-					component={BookTitle}>
+					<Route exact path="/John/React/Books" component={BookTitle}>
 					</Route>
 					<Route path="/John/React/Books/BookAuthor" component={BookAuthor} >
+					</Route>
+					<Route path="/John/React/Books/BookGenre" component={BookGenre}>
 					</Route>
 					<Route  path="*" component={NotFound} >
 						<Redirect to="localhost/John/React/Books" />
@@ -68,8 +71,6 @@ function BookTitle() {
 		];
 
 	function compare(a,b){return a.title > b.title;}
-	function compareAuthor(a,b){return a.author < b.author;}
-	function compareGenre(a,b){return a.genre < b.genre;}
 
 	return (
 		<div>
@@ -90,6 +91,35 @@ function BookTitle() {
 					);
 				})}
 			</table>
+		</div>
+	);
+}
+function BookAuthor(){
+	const bookInfo =
+		[
+			{
+			"title": "CThe Great Gatsby",
+			"author": "Fitzgerald",
+			"genre": "XAmerican Fiction"
+			},
+			{
+			"title": "AThe Grapes of Wrath",
+			"author": "Steinbeck",
+			"genre": "YAmerican Fiction"
+			},
+			{
+			"title": "B",
+			"author": "DFitzgerald",
+			"genre": "ZAmerican Fiction"
+			}
+		];
+
+
+	function compareAuthor(a,b){return a.author > b.author;}
+
+	return (
+		<div>
+			Book Author
 			<h1>by author</h1>
 			<table>
 				<tr>
@@ -107,6 +137,35 @@ function BookTitle() {
 					);
 				})}
 			</table>
+
+		</div>
+	);
+}
+
+function BookGenre(){
+	const bookInfo =
+		[
+			{
+			"title": "CThe Great Gatsby",
+			"author": "Fitzgerald",
+			"genre": "XAmerican Fiction"
+			},
+			{
+			"title": "AThe Grapes of Wrath",
+			"author": "Steinbeck",
+			"genre": "YAmerican Fiction"
+			},
+			{
+			"title": "B",
+			"author": "DFitzgerald",
+			"genre": "ZAmerican Fiction"
+			}
+		];
+
+	function compareGenre(a,b){return a.genre > b.genre;}
+
+	return(
+		<div>
 			<h1>by genre</h1>
 			<table>
 				<tr>
@@ -126,14 +185,9 @@ function BookTitle() {
 			</table>
 		</div>
 	);
+
 }
-function BookAuthor(){
-	return (
-		<div>
-			Book Author
-		</div>
-	);
-}
+
 function NotFound(){
 	return (
 		<div>
