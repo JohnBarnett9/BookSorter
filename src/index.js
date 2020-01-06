@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import {useRef} from "react";
 import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
 import {Redirect} from "react-router-dom";
 
-function RouterExample() {
+const RouterExample = () => {
 	return (
 		<BrowserRouter>
 			<div>
@@ -16,9 +17,9 @@ function RouterExample() {
 					</li>
 				</ul>
 				<Switch>
-					<Route path="/John/React/Books/BookAuthor" component={BookAuthor} >
-					</Route>
 					<Route exact path="/John/React/Books" component={BookTitle} >
+					</Route>
+					<Route path="/John/React/Books/BookAuthor" component={BookAuthor} >
 					</Route>
 					<Route  path="*" component={NotFound} >
 						<Redirect to="localhost/John/React/Books" />
@@ -27,12 +28,41 @@ function RouterExample() {
 			</div>
 		</BrowserRouter>
 	);
-}
+};
 
 function BookTitle() {
+	const bookInfo =
+		[
+			{
+			"title": "The Great Gatsby",
+			"author": "Fitzgerald",
+			"genre": "American Fiction"
+			},
+			{
+			"title": "The Grapes of Wrath",
+			"author": "Steinbeck",
+			"genre": "American Fiction"
+			}
+		];
+
 	return (
 		<div>
-			Book Title
+			<table>
+				<tr>
+					<th>Title</th>
+					<th>Author</th>
+					<th>Genre</th>
+				</tr>
+				{bookInfo.map((name, index) => {
+					return (
+						<tr>
+							<td>{name.title}</td>
+							<td>{name.author}</td>
+							<td>{name.genre}</td>
+						</tr>
+					);
+				})}
+			</table>
 		</div>
 	);
 }
