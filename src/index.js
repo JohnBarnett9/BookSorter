@@ -1,4 +1,5 @@
 import React from "react";
+import {useEffect} from "react";
 import ReactDOM from "react-dom";
 import {useRef} from "react";
 import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
@@ -47,7 +48,6 @@ const RouterExample = () => {
 };
 
 function BookTitle() {
-	/**/
 	const bookInfo =
 		[
 			{
@@ -67,6 +67,10 @@ function BookTitle() {
 			}
 		];
 
+	function compare(a,b){return a.title > b.title;}
+	function compareAuthor(a,b){return a.author < b.author;}
+	function compareGenre(a,b){return a.genre < b.genre;}
+
 	return (
 		<div>
 			<h1>by title</h1>
@@ -76,7 +80,7 @@ function BookTitle() {
 					<th>Author</th>
 					<th>Genre</th>
 				</tr>
-				{bookInfo.sort(function(a,b){return a.title > b.title}).map((name, index) => {
+				{bookInfo.sort(compare).map((name, index) => {
 					return (
 						<tr>
 							<td>{name.title}</td>
@@ -93,7 +97,7 @@ function BookTitle() {
 					<th>Author</th>
 					<th>Genre</th>
 				</tr>
-				{bookInfo.sort(function(a,b){return a.author > b.author}).map((name, index) => {
+				{bookInfo.sort(compareAuthor).map((name, index) => {
 					return (
 						<tr>
 							<td>{name.title}</td>
@@ -110,7 +114,7 @@ function BookTitle() {
 					<th>Author</th>
 					<th>Genre</th>
 				</tr>
-				{bookInfo.sort(function(a,b){return a.genre > b.genre}).map((name, index) => {
+				{bookInfo.sort(compareGenre).map((name, index) => {
 					return (
 						<tr>
 							<td>{name.title}</td>
