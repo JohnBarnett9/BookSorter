@@ -7,25 +7,50 @@ import {Redirect} from "react-router-dom";
 import {Navbar, Nav, Grid, Row, Col} from "react-bootstrap";
 
 const RouterExample = () => {
+
 	const bookInfo =
 		[
-			{
-			"title": "CThe Great Gatsby",
-			"author": "Fitzgerald",
-			"genre": "XAmerican Fiction"
-			},
-			{
-			"title": "AThe Grapes of Wrath",
-			"author": "Steinbeck",
-			"genre": "YAmerican Fiction"
-			},
-			{
-			"title": "B",
-			"author": "DFitzgerald",
-			"genre": "ZAmerican Fiction"
-			}
+		  {
+			"author": "Chinua Achebe",
+			"title": "Things Fall Apart",
+			"year": 1958
+		  },
+		  {
+			"author": "Hans Christian Andersen",
+			"title": "Fairy tales",
+			"year": 1836
+		  },
+		  {
+			"author": "Dante Alighieri",
+			"title": "The Divine Comedy",
+			"year": 1315
+		  },
+		  {
+			"author": "Jane Austen",
+			"title": "Pride and Prejudice",
+			"year": 1813
+		  },
+		  {
+			"author": "Giovanni Boccaccio",
+			"title": "The Decameron",
+			"year": 1351
+		  },
+		  {
+			"author": "Emily Bront\u00eb",
+			"title": "Wuthering Heights",
+			"year": 1847
+		  },
+		  {
+			"author": "Miguel de Cervantes",
+			"title": "Don Quijote De La Mancha",
+			"year": 1610
+		  },
+		  {
+			"author": "Charles Dickens",
+			"title": "Great Expectations",
+			"year": 1861
+		  }
 		];
-
 	return (
 		<BrowserRouter>
 			<div>
@@ -43,7 +68,7 @@ const RouterExample = () => {
 										<Link to="/John/React/Books/BookAuthor">BookAuthor</Link>
 									</Nav.Link>
 									<Nav.Link>
-										<Link to="/John/React/Books/BookGenre">Book Genre</Link>
+										<Link to="/John/React/Books/BookYear">Book Year</Link>
 									</Nav.Link>
 								</Nav>
 							</Navbar>
@@ -51,24 +76,32 @@ const RouterExample = () => {
 						<Col>
 						</Col>
 					</Row>
+					<Row>
+						<Col>
+						</Col>
+						<Col lg={5}>
+							<Switch>
+								<Route
+								exact path="/John/React/Books"
+								render={() => <BookTitle bookInfo={bookInfo}/>}>
+								</Route>
+								<Route
+								path="/John/React/Books/BookAuthor"
+								render={() => <BookAuthor bookInfo={bookInfo}/>} >
+								</Route>
+								<Route
+								path="/John/React/Books/BookYear"
+								render={() => <BookYear bookInfo={bookInfo}/>}>
+								</Route>
+								<Route  path="*" component={NotFound} >
+									<Redirect to="localhost/John/React/Books" />
+								</Route>
+							</Switch>
+						</Col>
+						<Col>
+						</Col>
+					</Row>
 				</div>
-				<Switch>
-					<Route
-					exact path="/John/React/Books"
-					render={() => <BookTitle bookInfo={bookInfo}/>}>
-					</Route>
-					<Route
-					path="/John/React/Books/BookAuthor"
-					render={() => <BookAuthor bookInfo={bookInfo}/>} >
-					</Route>
-					<Route 
-					path="/John/React/Books/BookGenre" 
-					render={() => <BookGenre bookInfo={bookInfo}/>}>
-					</Route>
-					<Route  path="*" component={NotFound} >
-						<Redirect to="localhost/John/React/Books" />
-					</Route>
-				</Switch>
 			</div>
 		</BrowserRouter>
 	);
@@ -88,19 +121,19 @@ function BookTitle(props) {
 
 	return (
 		<div>
-			<h1>by title</h1>
+			<h1 className="text-center">Sorted By Title</h1>
 			<table>
 				<tr>
 					<th>Title</th>
 					<th>Author</th>
-					<th>Genre</th>
+					<th>Year</th>
 				</tr>
 				{props.bookInfo.sort(compareTitle).map((name, index) => {
 					return (
 						<tr>
 							<td>{name.title}</td>
 							<td>{name.author}</td>
-							<td>{name.genre}</td>
+							<td>{name.year}</td>
 						</tr>
 					);
 				})}
@@ -122,19 +155,19 @@ function BookAuthor(props){
 
 	return (
 		<div>
-			<h1>by author</h1>
+			<h1 className="text-center">Sorted By Author</h1>
 			<table>
 				<tr>
 					<th>Title</th>
 					<th>Author</th>
-					<th>Genre</th>
+					<th>Year</th>
 				</tr>
 				{props.bookInfo.sort(compareAuthor).map((name, index) => {
 					return (
 						<tr>
 							<td>{name.title}</td>
 							<td>{name.author}</td>
-							<td>{name.genre}</td>
+							<td>{name.year}</td>
 						</tr>
 					);
 				})}
@@ -144,33 +177,27 @@ function BookAuthor(props){
 	);
 }
 
-function BookGenre(props){
+function BookYear(props){
 
-	function compareGenre(a,b){
-		if (a.genre < b.genre) {
-			return -1;
-		}
-		if (a.genre > b.genre) {
-			return 1;
-		}
-		return 0;
+	function compareYear(a,b){
+		return a.year - b.year;
 	}
 
 	return(
 		<div>
-			<h1>by genre</h1>
+			<h1 className="text-center">Sorted By Year</h1>
 			<table>
 				<tr>
 					<th>Title</th>
 					<th>Author</th>
-					<th>Genre</th>
+					<th>year</th>
 				</tr>
-				{props.bookInfo.sort(compareGenre).map((name, index) => {
+				{props.bookInfo.sort(compareYear).map((name, index) => {
 					return (
 						<tr>
 							<td>{name.title}</td>
 							<td>{name.author}</td>
-							<td>{name.genre}</td>
+							<td>{name.year}</td>
 						</tr>
 					);
 				})}
