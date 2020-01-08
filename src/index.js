@@ -9,14 +9,19 @@ const RouterExample = () => {
 	const bookInfo =
 		[
 			{
-			"title": "The Great Gatsby",
+			"title": "CThe Great Gatsby",
 			"author": "Fitzgerald",
-			"genre": "American Fiction"
+			"genre": "XAmerican Fiction"
 			},
 			{
-			"title": "The Grapes of Wrath",
+			"title": "AThe Grapes of Wrath",
 			"author": "Steinbeck",
-			"genre": "American Fiction"
+			"genre": "YAmerican Fiction"
+			},
+			{
+			"title": "B",
+			"author": "DFitzgerald",
+			"genre": "ZAmerican Fiction"
 			}
 		];
 
@@ -35,11 +40,17 @@ const RouterExample = () => {
 					</li>
 				</ul>
 				<Switch>
-					<Route exact path="/John/React/Books" component={BookTitle}>
+					<Route
+					exact path="/John/React/Books"
+					render={() => <BookTitle bookInfo={bookInfo}/>}>
 					</Route>
-					<Route path="/John/React/Books/BookAuthor" component={BookAuthor} >
+					<Route
+					path="/John/React/Books/BookAuthor"
+					render={() => <BookAuthor bookInfo={bookInfo}/>} >
 					</Route>
-					<Route path="/John/React/Books/BookGenre" component={BookGenre}>
+					<Route 
+					path="/John/React/Books/BookGenre" 
+					render={() => <BookGenre bookInfo={bookInfo}/>}>
 					</Route>
 					<Route  path="*" component={NotFound} >
 						<Redirect to="localhost/John/React/Books" />
@@ -50,28 +61,17 @@ const RouterExample = () => {
 	);
 };
 
-function BookTitle() {
-	const bookInfo =
-		[
-			{
-			"title": "CThe Great Gatsby",
-			"author": "Fitzgerald",
-			"genre": "XAmerican Fiction"
-			},
-			{
-			"title": "AThe Grapes of Wrath",
-			"author": "Steinbeck",
-			"genre": "YAmerican Fiction"
-			},
-			{
-			"title": "B",
-			"author": "DFitzgerald",
-			"genre": "ZAmerican Fiction"
-			}
-		];
-
-	function compare(a,b){return a.title > b.title;}
-
+function BookTitle(props) {
+	function compare(a,b){
+		//console.dir(a.title>b.title);
+		if (a.title < b.title) return -1;
+		if (a.title > b.title) return 1;
+		return 0;
+		//return a.title > b.title;
+		}
+	let sTitle = props.bookInfo.sort(compare);
+	console.dir(sTitle);
+	
 	return (
 		<div>
 			<h1>by title</h1>
@@ -81,7 +81,7 @@ function BookTitle() {
 					<th>Author</th>
 					<th>Genre</th>
 				</tr>
-				{bookInfo.sort(compare).map((name, index) => {
+				{props.bookInfo.sort(compare).map((name, index) => {
 					return (
 						<tr>
 							<td>{name.title}</td>
@@ -94,32 +94,17 @@ function BookTitle() {
 		</div>
 	);
 }
-function BookAuthor(){
-	const bookInfo =
-		[
-			{
-			"title": "CThe Great Gatsby",
-			"author": "Fitzgerald",
-			"genre": "XAmerican Fiction"
-			},
-			{
-			"title": "AThe Grapes of Wrath",
-			"author": "Steinbeck",
-			"genre": "YAmerican Fiction"
-			},
-			{
-			"title": "B",
-			"author": "DFitzgerald",
-			"genre": "ZAmerican Fiction"
-			}
-		];
+function BookAuthor(props){
 
-
-	function compareAuthor(a,b){return a.author > b.author;}
+	function compareAuthor(a,b){
+		if (a.author < b.author) return -1;
+		if (a.author > b.author) return 1;
+		return 0;
+		//return a.author > b.author;
+		}
 
 	return (
 		<div>
-			Book Author
 			<h1>by author</h1>
 			<table>
 				<tr>
@@ -127,7 +112,7 @@ function BookAuthor(){
 					<th>Author</th>
 					<th>Genre</th>
 				</tr>
-				{bookInfo.sort(compareAuthor).map((name, index) => {
+				{props.bookInfo.sort(compareAuthor).map((name, index) => {
 					return (
 						<tr>
 							<td>{name.title}</td>
@@ -142,27 +127,15 @@ function BookAuthor(){
 	);
 }
 
-function BookGenre(){
-	const bookInfo =
-		[
-			{
-			"title": "CThe Great Gatsby",
-			"author": "Fitzgerald",
-			"genre": "XAmerican Fiction"
-			},
-			{
-			"title": "AThe Grapes of Wrath",
-			"author": "Steinbeck",
-			"genre": "YAmerican Fiction"
-			},
-			{
-			"title": "B",
-			"author": "DFitzgerald",
-			"genre": "ZAmerican Fiction"
-			}
-		];
+function BookGenre(props){
 
-	function compareGenre(a,b){return a.genre > b.genre;}
+
+	function compareGenre(a,b){
+		if (a.genre < b.genre) return -1;
+		if (a.genre > b.genre) return 1;
+		return 0;
+		//return a.genre > b.genre;
+		}
 
 	return(
 		<div>
@@ -173,7 +146,7 @@ function BookGenre(){
 					<th>Author</th>
 					<th>Genre</th>
 				</tr>
-				{bookInfo.sort(compareGenre).map((name, index) => {
+				{props.bookInfo.sort(compareGenre).map((name, index) => {
 					return (
 						<tr>
 							<td>{name.title}</td>
