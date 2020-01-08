@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import {useRef} from "react";
 import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
 import {Redirect} from "react-router-dom";
-import {Navbar, Nav} from "react-bootstrap";
+import {Navbar, Nav, Grid, Row, Col} from "react-bootstrap";
 
 const RouterExample = () => {
 	const bookInfo =
@@ -29,19 +29,29 @@ const RouterExample = () => {
 	return (
 		<BrowserRouter>
 			<div>
-				<Navbar>
-					<Nav>
-						<Nav.Link>
-							<Link to="/John/React/Books">BookTitle</Link>
-						</Nav.Link>
-						<Nav.Link>
-							<Link to="/John/React/Books/BookAuthor">BookAuthor</Link>
-						</Nav.Link>
-						<Nav.Link>
-							<Link to="/John/React/Books/BookGenre">Book Genre</Link>
-						</Nav.Link>
-					</Nav>
-				</Navbar>
+				<div className="container">
+					<Row>
+						<Col>
+						</Col>
+						<Col lg={5}>
+							<Navbar>
+								<Nav className="mr-auto">
+									<Nav.Link>
+										<Link to="/John/React/Books">BookTitle</Link>
+									</Nav.Link>
+									<Nav.Link>
+										<Link to="/John/React/Books/BookAuthor">BookAuthor</Link>
+									</Nav.Link>
+									<Nav.Link>
+										<Link to="/John/React/Books/BookGenre">Book Genre</Link>
+									</Nav.Link>
+								</Nav>
+							</Navbar>
+						</Col>
+						<Col>
+						</Col>
+					</Row>
+				</div>
 				<Switch>
 					<Route
 					exact path="/John/React/Books"
