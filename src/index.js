@@ -62,16 +62,17 @@ const RouterExample = () => {
 };
 
 function BookTitle(props) {
-	function compare(a,b){
-		//console.dir(a.title>b.title);
-		if (a.title < b.title) return -1;
-		if (a.title > b.title) return 1;
-		return 0;
-		//return a.title > b.title;
+
+	function compareTitle(a,b){
+		if (a.title < b.title){
+			return -1;
 		}
-	let sTitle = props.bookInfo.sort(compare);
-	console.dir(sTitle);
-	
+		if (a.title > b.title) {
+			return 1;
+		}
+		return 0;
+	}
+
 	return (
 		<div>
 			<h1>by title</h1>
@@ -81,7 +82,7 @@ function BookTitle(props) {
 					<th>Author</th>
 					<th>Genre</th>
 				</tr>
-				{props.bookInfo.sort(compare).map((name, index) => {
+				{props.bookInfo.sort(compareTitle).map((name, index) => {
 					return (
 						<tr>
 							<td>{name.title}</td>
@@ -97,11 +98,14 @@ function BookTitle(props) {
 function BookAuthor(props){
 
 	function compareAuthor(a,b){
-		if (a.author < b.author) return -1;
-		if (a.author > b.author) return 1;
-		return 0;
-		//return a.author > b.author;
+		if (a.author < b.author) {
+			return -1;
 		}
+		if (a.author > b.author) {
+			return 1;
+		}
+		return 0;
+	}
 
 	return (
 		<div>
@@ -129,13 +133,15 @@ function BookAuthor(props){
 
 function BookGenre(props){
 
-
 	function compareGenre(a,b){
-		if (a.genre < b.genre) return -1;
-		if (a.genre > b.genre) return 1;
-		return 0;
-		//return a.genre > b.genre;
+		if (a.genre < b.genre) {
+			return -1;
 		}
+		if (a.genre > b.genre) {
+			return 1;
+		}
+		return 0;
+	}
 
 	return(
 		<div>
