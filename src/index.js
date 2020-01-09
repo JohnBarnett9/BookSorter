@@ -58,9 +58,9 @@ const RouterExample = () => {
 					<Row>
 						<Col>
 						</Col>
-						<Col lg={5}>
+						<Col lg={5.5}>
 							<Navbar>
-								<Nav className="mr-auto">
+								<Nav>
 									<Nav.Link>
 										<Link to="/John/React/Books">BookTitle</Link>
 									</Nav.Link>
