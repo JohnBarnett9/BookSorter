@@ -1,9 +1,6 @@
 import React from "react";
-import {useEffect} from "react";
 import ReactDOM from "react-dom";
-import {useRef} from "react";
-import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
-import {Redirect} from "react-router-dom";
+import {BrowserRouter, Switch, Route, Link, Redirect} from "react-router-dom";
 import {Navbar, Nav, Grid, Row, Col} from "react-bootstrap";
 
 const RouterExample = () => {
@@ -62,10 +59,10 @@ const RouterExample = () => {
 							<Navbar>
 								<Nav>
 									<Nav.Link>
-										<Link to="/John/React/Books">BookTitle</Link>
+										<Link to="/John/React/Books">Book Title</Link>
 									</Nav.Link>
 									<Nav.Link>
-										<Link to="/John/React/Books/BookAuthor">BookAuthor</Link>
+										<Link to="/John/React/Books/BookAuthor">Book Author</Link>
 									</Nav.Link>
 									<Nav.Link>
 										<Link to="/John/React/Books/BookYear">Book Year</Link>
@@ -190,7 +187,7 @@ function BookYear(props){
 				<tr>
 					<th>Title</th>
 					<th>Author</th>
-					<th>year</th>
+					<th>Year</th>
 				</tr>
 				{props.bookInfo.sort(compareYear).map((name, index) => {
 					return (
