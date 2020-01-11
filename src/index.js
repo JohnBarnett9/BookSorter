@@ -48,8 +48,10 @@ const RouterExample = () => {
 			"year": 1861
 		  }
 		];
+		console.dir(window.location);
+		let absPath = window.location.href;
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename="/John/React/Books" >
 			<div>
 				<div className="container">
 					<Row>
@@ -59,13 +61,14 @@ const RouterExample = () => {
 							<Navbar>
 								<Nav>
 									<Nav.Link>
-										<Link to="/John/React/Books">Book Title</Link>
+										{/*<Link to="/John/React/Books">Book Title</Link>*/}
+										<Link to="/">Book Title</Link>
 									</Nav.Link>
 									<Nav.Link>
-										<Link to="/John/React/Books/BookAuthor">Book Author</Link>
+										<Link to="/BookAuthor">Book Author</Link>
 									</Nav.Link>
 									<Nav.Link>
-										<Link to="/John/React/Books/BookYear">Book Year</Link>
+										<Link to="/BookYear">Book Year</Link>
 									</Nav.Link>
 								</Nav>
 							</Navbar>
@@ -78,20 +81,27 @@ const RouterExample = () => {
 						</Col>
 						<Col lg={5}>
 							<Switch>
+								{/*}
 								<Route
 								exact path="/John/React/Books"
 								render={() => <BookTitle bookInfo={bookInfo}/>}>
 								</Route>
+								*/}
 								<Route
-								path="/John/React/Books/BookAuthor"
+								exact path="/"
+								render={() => <BookTitle bookInfo={bookInfo}/>}>
+								</Route>
+
+								<Route
+								path="/BookAuthor"
 								render={() => <BookAuthor bookInfo={bookInfo}/>} >
 								</Route>
 								<Route
-								path="/John/React/Books/BookYear"
+								path="/BookYear"
 								render={() => <BookYear bookInfo={bookInfo}/>}>
 								</Route>
 								<Route  path="*" component={NotFound} >
-									<Redirect to="localhost/John/React/Books" />
+									<Redirect to="./" />
 								</Route>
 							</Switch>
 						</Col>
