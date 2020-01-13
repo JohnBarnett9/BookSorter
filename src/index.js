@@ -48,10 +48,12 @@ const RouterExample = () => {
 			"year": 1861
 		  }
 		];
-		console.dir(window.location);
-		let absPath = window.location.href;
+
+	let currentPath = window.location.pathname; //subdirectory can adapt to dev vs prod env
+	currentPath = currentPath.substring(0, currentPath.length - 1); //trim '/' from end
+
 	return (
-		<BrowserRouter basename="/John/React/Books" >
+		<BrowserRouter basename={currentPath} >
 			<div>
 				<div className="container">
 					<Row>
