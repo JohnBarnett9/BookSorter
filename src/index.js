@@ -52,6 +52,7 @@ const RouterExample = () => {
 	let currentPath = window.location.pathname; //subdirectory can adapt to dev vs prod env
 	currentPath = currentPath.substring(0, currentPath.length - 1); //trim '/' from end
 
+	/*5.5 is to make NavBar be centered.*/
 	return (
 		<BrowserRouter basename={currentPath} >
 			<div>
@@ -63,7 +64,6 @@ const RouterExample = () => {
 							<Navbar>
 								<Nav>
 									<Nav.Link>
-										{/*<Link to="/John/React/Books">Book Title</Link>*/}
 										<Link to="/">Book Title</Link>
 									</Nav.Link>
 									<Nav.Link>
@@ -83,12 +83,6 @@ const RouterExample = () => {
 						</Col>
 						<Col lg={5}>
 							<Switch>
-								{/*}
-								<Route
-								exact path="/John/React/Books"
-								render={() => <BookTitle bookInfo={bookInfo}/>}>
-								</Route>
-								*/}
 								<Route
 								exact path="/"
 								render={() => <BookTitle bookInfo={bookInfo}/>}>
@@ -116,6 +110,9 @@ const RouterExample = () => {
 	);
 };
 
+/*
+Sorts books based on title.
+*/
 function BookTitle(props) {
 
 	function compareTitle(a,b){
@@ -150,6 +147,10 @@ function BookTitle(props) {
 		</div>
 	);
 }
+
+/*
+Sorts Books based on Author.
+*/
 function BookAuthor(props){
 
 	function compareAuthor(a,b){
@@ -186,6 +187,9 @@ function BookAuthor(props){
 	);
 }
 
+/*
+Sorts Books based on Year.
+*/
 function BookYear(props){
 
 	function compareYear(a,b){
@@ -216,6 +220,9 @@ function BookYear(props){
 
 }
 
+/*
+Displayed when no other Route is matched.
+*/
 function NotFound(){
 	return (
 		<div>
@@ -223,10 +230,6 @@ function NotFound(){
 		</div>
 	);
 }
+
 const rootElement = document.getElementById("root");
 ReactDOM.render(<RouterExample/>, rootElement);
-
-
-
-
-
